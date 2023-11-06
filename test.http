@@ -1,0 +1,89 @@
+GET http://localhost:6161/cards HTTP/1.1
+
+####
+
+GET http://localhost:6161/cards/653f9bd354c41827bafde31d
+
+####
+
+GET http://localhost:6161/cards/title?title= HTTP/1.1
+
+####
+
+GET http://localhost:6161/cardsPage?page=1 HTTP/1.1
+
+####
+
+POST http://localhost:6161/cards/create HTTP/1.1
+Content-Type: application/json
+
+{
+  "title": "Moon Knight",
+  "cover": "https://i.postimg.cc/1t0sp7r9/moon.png",
+  "frontPage": "https://i.postimg.cc/qqwThtXQ/photo-2023-10-31-13-23-02.jpg",
+  "secondPage": "https://i.postimg.cc/3wGQjfFk/photo-2023-10-31-13-23-03.jpg",
+  "thirdPage": "https://i.postimg.cc/ZRFk29gZ/photo-2023-10-31-13-23-04.jpg",
+  "fourthPage": "https://i.postimg.cc/HnYGgYDM/photo-2023-10-31-13-23-04-1.jpg",
+  "fifthPage": "https://i.postimg.cc/wvd8w5w0/photo-2023-10-31-13-23-05.jpg",
+  "sixthPage": "https://i.postimg.cc/rFhTqrpw/photo-2023-10-31-13-23-06.jpg",
+  "seventhPage": "https://i.postimg.cc/7Zdy2r0v/photo-2023-10-31-13-23-07.jpg",
+  "eighthPage": "https://i.postimg.cc/RZNBhZ3Q/photo-2023-10-31-13-23-08.jpg",
+  "ninthPage": "https://i.postimg.cc/zv0sDs8c/photo-2023-10-31-13-23-09.jpg",
+  "tenthPage": "https://i.postimg.cc/J7xVQkZ5/photo-2023-10-31-13-23-10.jpg",
+  "eleventhPage": "https://i.postimg.cc/fTb4qRvn/photo-2023-10-31-13-23-11.jpg",
+  "twelfthPage": "https://i.postimg.cc/L6QccFyq/photo-2023-10-31-13-23-12.jpg",
+  "thirteenthPage": "https://i.postimg.cc/W1DBjYK5/photo-2023-10-31-13-23-13.jpg",
+  "fourteenthPage": "https://i.postimg.cc/13LLzc1s/photo-2023-10-31-13-23-14.jpg",
+  "fifteenthPage": "https://i.postimg.cc/5tLDQYfv/photo-2023-10-31-13-23-15.jpg",
+  "name": "Marc Spector alias Moon Knight",
+  "information": "Marc Spector nasce a Chicago, Illinois, figlio ebreo-americano del rabbino Elias Spector, sopravvissuto alla persecuzione nazista. Nell’Altro Vuoto, un regno al di fuori dei normali tempo e spazio, l’entità Khonshu (un tempo adorato come dio della luna dal popolo dell’antico Egitto) si interessa a Spector; le entità dell’Altro Vuoto non possono lasciare il regno senza grandi difficoltà, ma possono creare connessioni psichiche con ospiti e avatar nell’universo fisico della Terra. Ritenendo che Marc abbia una “mente debole” che lo rende vulnerabile, Khonshu sceglie il bambino affinché un giorno agisca come suo cavaliere e avatar.",
+  "closingPage1": {
+    "author": "Doug Moench, Bill Sienkiewicz, Steve Oliff",
+    "year": "Luglio 1983",
+    "price": "34,99€"
+  },
+  "closingPage2": {
+    "author": "Greg Smallwood, Jeff Lemire",
+    "year": "Novembre 2016",
+    "price": "16,99€"
+  },
+  "closingPage3": {
+    "author": "Gregg Hurwitz, Bong Ty Dazo, Joe Pimentel",
+    "year": "Luglio 2011",
+    "price": "39,99€"
+  }
+}
+
+
+####
+
+PATCH http://localhost:6161/cards/modify/6540f4186706d44ec39d0a22 HTTP/1.1
+Content-Type: application/json
+
+{
+   
+    "cover":"https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5b8d2b12-21e8-4931-8a6d-fb9ecdd60383/df191wv-2cbebba8-5515-4c84-93c4-c69b8f24f313.png/v1/fill/w_1280,h_1798/moon_knight_png_by_metropolis_hero1125_df191wv-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTc5OCIsInBhdGgiOiJcL2ZcLzViOGQyYjEyLTIxZTgtNDkzMS04YTZkLWZiOWVjZGQ2MDM4M1wvZGYxOTF3di0yY2JlYmJhOC01NTE1LTRjODQtOTNjNC1jNjliOGYyNGYzMTMucG5nIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.RgCboO8XJ_zRIljvnGhe5F6v1u7mPY96pjOMShRsAlQ"
+}
+
+
+####
+
+DELETE http://localhost:6161/cards/delete/653c2e4d974b64398c6fe25c HTTP/1.1
+
+
+####
+GET http://localhost:6161/users HTTP/1.1
+
+####
+
+POST http://localhost:6161/users/create HTTP/1.1
+Content-Type: application/json
+
+{ 
+  "firstName": "Mario",
+  "lastName": "Rossi",
+  "email": "MarioRossi@gmail.com",
+  "password": "lamiapassword",
+  "role":"user"
+
+}
