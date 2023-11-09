@@ -3,6 +3,48 @@
 const express = require('express');
 const cards = express.Router();
 const CardsModel = require('../models/CardModel');
+const NewCardsModel = require('../models/NewCardModel');
+
+// GET i comic relativi a una card tramite ID
+cards.get('/cards/:cardsId/comics', async (req, res) => {
+  const { cardsId } = req.params;
+
+  try {
+    const card = await CardsModel.findById(cardsId);
+
+    if (!card) {
+      return res.status(404).send({
+        statusCode: 404,
+        message: 'Card non trovata',
+      });
+    }
+
+    // Se la card è stata trovata, estrai l'ID della NewCard associata
+    const newCardId = card.newCardId;
+
+    // Ora puoi trovare tutti i comic relativi a quella NewCard
+    const comics = await NewCardsModel.find({ newCardId });
+
+    if (!comics || comics.length === 0) {
+      return res.status(404).send({
+        statusCode: 404,
+        message: 'Nessun comic trovato per questa card',
+      });
+    }
+
+    res.status(200).send({
+      statusCode: 200,
+      message: 'Ecco i comic relativi alla card!',
+      comics,
+    });
+  } catch (error) {
+    res.status(500).send({
+      statusCode: 500,
+      message: 'Impossibile recuperare i comic della card',
+      error: error.message,
+    });
+  }
+});
 
 //GET alle cards con impaginazione
 cards.get('/cardsPage', async (req, res) => {
@@ -74,6 +116,50 @@ cards.get('/cards', async (req, res) => {
   }
 });
 
+// GET i post relativi all'ID della card
+
+cards.get('/cards/:cardsId/posts', async (req, res) => {
+  const { cardsId } = req.params;
+
+  try {
+    const card = await CardsModel.findById(cardsId);
+
+    if (!card) {
+      return res.status(404).send({
+        statusCode: 404,
+        message: 'Card non trovata',
+      });
+    }
+
+    // Se la card è stata trovata, estrai l'ID della card associata
+    const newCardId = card.newCardId;
+
+    // Ora puoi trovare la NewCard associata usando l'ID
+    const newCard = await NewCardsModel.findById(newCardId);
+
+    if (!newCard) {
+      return res.status(404).send({
+        statusCode: 404,
+        message: 'NewCard non trovata',
+      });
+    }
+
+    // Estrai i post relativi alla NewCard
+    const posts = newCard.posts; // Assumi che ci sia un campo "posts" nell'oggetto NewCard
+
+    res.status(200).send({
+      statusCode: 200,
+      message: 'Ecco i post relativi alla card!',
+      posts,
+    });
+  } catch (error) {
+    res.status(500).send({
+      statusCode: 500,
+      message: 'Impossibile recuperare i post della card',
+      error: error.message,
+    });
+  }
+});
 //GET di un post tramite titolo(filtro per trovare solo il post con quella parola nel titolo)
 cards.get('/cards/title', async (req, res) => {
   const { title } = req.query;
@@ -109,38 +195,6 @@ cards.post('/cards/create', async (req, res) => {
   const newCard = await CardsModel({
     title: req.body.title,
     cover: req.body.cover,
-    frontPage: req.body.frontPage,
-    secondPage: req.body.secondPage,
-    thirdPage: req.body.thirdPage,
-    fourthPage: req.body.fourthPage,
-    fifthPage: req.body.fifthPage,
-    sixthPage: req.body.sixthPage,
-    seventhPage: req.body.seventhPage,
-    eighthPage: req.body.eighthPage,
-    ninthPage: req.body.ninthPage,
-    tenthPage: req.body.tenthPage,
-    eleventhPage: req.body.eleventhPage,
-    twelfthPage: req.body.twelfthPage,
-    thirteenthPage: req.body.thirteenthPage,
-    fourteenthPage: req.body.fourteenthPage,
-    fifteenthPage: req.body.fifteenthPage,
-    name: req.body.name,
-    information: req.body.information,
-    closingPage1: {
-      author: req.body.closingPage1.author,
-      year: req.body.closingPage1.year,
-      price: req.body.closingPage1.price,
-    },
-    closingPage2: {
-      author: req.body.closingPage2.author,
-      year: req.body.closingPage2.year,
-      price: req.body.closingPage2.price,
-    },
-    closingPage3: {
-      author: req.body.closingPage3.author,
-      year: req.body.closingPage3.year,
-      price: req.body.closingPage3.price,
-    },
   });
 
   try {
@@ -179,66 +233,7 @@ cards.patch('/cards/modify/:id', async (req, res) => {
     if (dataToUpdate.cover) {
       cardExist.cover = dataToUpdate.cover;
     }
-    if (dataToUpdate.frontPage) {
-      cardExist.frontPage = dataToUpdate.frontPage;
-    }
-    if (dataToUpdate.secondPage) {
-      cardExist.secondPage = dataToUpdate.secondPage;
-    }
-    if (dataToUpdate.thirdPage) {
-      cardExist.thirdPage = dataToUpdate.thirdPage;
-    }
-    if (dataToUpdate.fourthPage) {
-      cardExist.fourthPage = dataToUpdate.fourthPage;
-    }
-    if (dataToUpdate.fifthPage) {
-      cardExist.fifthPage = dataToUpdate.fifthPage;
-    }
-    if (dataToUpdate.sixthPage) {
-      cardExist.sixthPage = dataToUpdate.sixthPage;
-    }
-    if (dataToUpdate.seventhPage) {
-      cardExist.seventhPage = dataToUpdate.seventhPage;
-    }
-    if (dataToUpdate.eighthPage) {
-      cardExist.eighthPage = dataToUpdate.eighthPage;
-    }
-    if (dataToUpdate.ninthPage) {
-      cardExist.ninthPage = dataToUpdate.ninthPage;
-    }
-    if (dataToUpdate.tenthPage) {
-      cardExist.tenthPage = dataToUpdate.tenthPage;
-    }
-    if (dataToUpdate.eleventhPage) {
-      cardExist.eleventhPage = dataToUpdate.eleventhPage;
-    }
-    if (dataToUpdate.twelfthPage) {
-      cardExist.twelfthPage = dataToUpdate.twelfthPage;
-    }
-    if (dataToUpdate.thirteenthPage) {
-      cardExist.thirteenthPage = dataToUpdate.thirteenthPage;
-    }
-    if (dataToUpdate.fourteenthPage) {
-      cardExist.fourteenthPage = dataToUpdate.fourteenthPage;
-    }
-    if (dataToUpdate.fifteenthPage) {
-      cardExist.fifteenthPage = dataToUpdate.fifteenthPage;
-    }
-    if (dataToUpdate.name) {
-      cardExist.name = dataToUpdate.name;
-    }
-    if (dataToUpdate.information) {
-      cardExist.information = dataToUpdate.information;
-    }
-    if (dataToUpdate.closingPage1) {
-      cardExist.closingPage1 = dataToUpdate.closingPage1;
-    }
-    if (dataToUpdate.closingPage2) {
-      cardExist.closingPage2 = dataToUpdate.closingPage2;
-    }
-    if (dataToUpdate.closingPage3) {
-      cardExist.closingPage3 = dataToUpdate.closingPage3;
-    }
+
     const result = await cardExist.save();
 
     res.status(200).send({

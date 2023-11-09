@@ -35,6 +35,7 @@ signup.post('/signup', async (req, res) => {
         firstName: savedUser.firstName,
         lastName: savedUser.lastName,
         email: savedUser.email,
+        role: savedUser.role,
       },
       process.env.JWT_SECRET,
       {

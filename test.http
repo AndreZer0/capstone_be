@@ -2,6 +2,7 @@ GET http://localhost:6161/cards HTTP/1.1
 
 ####
 
+
 GET http://localhost:6161/cards/653f9bd354c41827bafde31d
 
 ####
@@ -18,45 +19,32 @@ POST http://localhost:6161/cards/create HTTP/1.1
 Content-Type: application/json
 
 {
-  "title": "Moon Knight",
-  "cover": "https://i.postimg.cc/1t0sp7r9/moon.png",
-  "frontPage": "https://i.postimg.cc/qqwThtXQ/photo-2023-10-31-13-23-02.jpg",
-  "secondPage": "https://i.postimg.cc/3wGQjfFk/photo-2023-10-31-13-23-03.jpg",
-  "thirdPage": "https://i.postimg.cc/ZRFk29gZ/photo-2023-10-31-13-23-04.jpg",
-  "fourthPage": "https://i.postimg.cc/HnYGgYDM/photo-2023-10-31-13-23-04-1.jpg",
-  "fifthPage": "https://i.postimg.cc/wvd8w5w0/photo-2023-10-31-13-23-05.jpg",
-  "sixthPage": "https://i.postimg.cc/rFhTqrpw/photo-2023-10-31-13-23-06.jpg",
-  "seventhPage": "https://i.postimg.cc/7Zdy2r0v/photo-2023-10-31-13-23-07.jpg",
-  "eighthPage": "https://i.postimg.cc/RZNBhZ3Q/photo-2023-10-31-13-23-08.jpg",
-  "ninthPage": "https://i.postimg.cc/zv0sDs8c/photo-2023-10-31-13-23-09.jpg",
-  "tenthPage": "https://i.postimg.cc/J7xVQkZ5/photo-2023-10-31-13-23-10.jpg",
-  "eleventhPage": "https://i.postimg.cc/fTb4qRvn/photo-2023-10-31-13-23-11.jpg",
-  "twelfthPage": "https://i.postimg.cc/L6QccFyq/photo-2023-10-31-13-23-12.jpg",
-  "thirteenthPage": "https://i.postimg.cc/W1DBjYK5/photo-2023-10-31-13-23-13.jpg",
-  "fourteenthPage": "https://i.postimg.cc/13LLzc1s/photo-2023-10-31-13-23-14.jpg",
-  "fifteenthPage": "https://i.postimg.cc/5tLDQYfv/photo-2023-10-31-13-23-15.jpg",
-  "name": "Marc Spector alias Moon Knight",
-  "information": "Marc Spector nasce a Chicago, Illinois, figlio ebreo-americano del rabbino Elias Spector, sopravvissuto alla persecuzione nazista. Nell’Altro Vuoto, un regno al di fuori dei normali tempo e spazio, l’entità Khonshu (un tempo adorato come dio della luna dal popolo dell’antico Egitto) si interessa a Spector; le entità dell’Altro Vuoto non possono lasciare il regno senza grandi difficoltà, ma possono creare connessioni psichiche con ospiti e avatar nell’universo fisico della Terra. Ritenendo che Marc abbia una “mente debole” che lo rende vulnerabile, Khonshu sceglie il bambino affinché un giorno agisca come suo cavaliere e avatar.",
-  "closingPage1": {
-    "author": "Doug Moench, Bill Sienkiewicz, Steve Oliff",
-    "year": "Luglio 1983",
-    "price": "34,99€"
-  },
-  "closingPage2": {
-    "author": "Greg Smallwood, Jeff Lemire",
-    "year": "Novembre 2016",
-    "price": "16,99€"
-  },
-  "closingPage3": {
-    "author": "Gregg Hurwitz, Bong Ty Dazo, Joe Pimentel",
-    "year": "Luglio 2011",
-    "price": "39,99€"
-  }
+  "title": "Nova",
+  "cover": "https://i.postimg.cc/KYbhv8dk/spiderman.png",
+ "newCardId":"654be1fd2f54327c7b7cc647"
 }
 
+####NEW CARD 
+POST http://localhost:6161/comic/create HTTP/1.1
+Content-Type: application/json
+
+{
+  "title": "Superior Spider-man #1",
+  "cover": "https://images3.imgbox.com/28/04/jpGZo3YW_o.jpg",
+  "price":"79,99€",
+  "author":"Peter David, Rick Leonardi",
+  "year":"Novembre 1992",
+  "images":[
+    "https://images3.imgbox.com/6a/f3/V3pFXipa_o.jpg",
+    "https://images3.imgbox.com/b5/d4/R1nUH54e_o.jpg",
+    "https://images3.imgbox.com/ce/fb/tHITYeA8_o.jpg",
+    "https://images3.imgbox.com/17/11/ce1ECjoE_o.jpg"   
+  ]
+ }
 
 ####
-
+GET http://localhost:6161/cards/654be21f2f54327c7b7cc649/comics
+####
 PATCH http://localhost:6161/cards/modify/6540f4186706d44ec39d0a22 HTTP/1.1
 Content-Type: application/json
 
@@ -85,5 +73,38 @@ Content-Type: application/json
   "email": "MarioRossi@gmail.com",
   "password": "lamiapassword",
   "role":"user"
+
+}
+
+
+
+####COMMENTS
+
+POST  http://localhost:6161/cards/654be21f2f54327c7b7cc649/comment/create HTTP/1.1
+Content-Type: application/json
+
+{ 
+  "username": "Mario",
+  "content": "Rossi",
+   "code":"654be21f2f54327c7b7cc649"
+
+}
+
+####
+GET  http://localhost:6161/comments/653ff6fb6706d44ec39d0920 HTTP/1.1
+
+####
+
+GET  http://localhost:6161/comments/getById/654a5a64a0de9ee981eb295e HTTP/1.1
+
+####
+
+PUT http://localhost:6161/cards/653ff6fb6706d44ec39d0920/comments/654a5a64a0de9ee981eb295e/modify
+Content-Type: application/json
+
+{ 
+  "username": "Marietto",
+  "content": "Rossetto",
+   "code":"653ff6fb6706d44ec39d0920"
 
 }

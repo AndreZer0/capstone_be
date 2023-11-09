@@ -6,6 +6,8 @@ const cardsRoute = require('./routes/cards');
 const loginRoute = require('./routes/login');
 const usersRoute = require('./routes/users');
 const signupRoute = require('./routes/signup');
+const commentsRoute = require('./routes/comment');
+const newCardRoute = require('./routes/newcard');
 require('dotenv').config();
 const PORT = 6161;
 const cors = require('cors');
@@ -16,9 +18,11 @@ app.use(cors());
 app.use(express.json());
 app.use(logger);
 app.use('/', cardsRoute);
+app.use('/', newCardRoute);
 app.use('/', loginRoute);
 app.use('/', usersRoute);
 app.use('/', signupRoute);
+app.use('/', commentsRoute);
 
 mongoose.connect(process.env.MONGODB_URL, {
   useNewUrlParser: true,
