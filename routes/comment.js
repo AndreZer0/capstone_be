@@ -6,10 +6,10 @@ const CommentModel = require('../models/CommentModel'); // Assicurati che il nom
 const CardsModel = require('../models/CardModel');
 
 // Commenti a un singolo post
-comments.get('/comments/:id', async (req, res) => {
+comments.get('/cards/:id/comments', async (req, res) => {
   const { id } = req.params;
   try {
-    const comm = await CommentModel.find({ code: id });
+    const comm = await CommentModel.find({ code: id }).populate('code');
     if (!comm) {
       res.status(404).send({
         statusCode: 404,

@@ -8,6 +8,7 @@ const usersRoute = require('./routes/users');
 const signupRoute = require('./routes/signup');
 const commentsRoute = require('./routes/comment');
 const newCardRoute = require('./routes/newcard');
+const stripeRoute = require('./routes/stripe');
 require('dotenv').config();
 const PORT = 6161;
 const cors = require('cors');
@@ -23,7 +24,7 @@ app.use('/', loginRoute);
 app.use('/', usersRoute);
 app.use('/', signupRoute);
 app.use('/', commentsRoute);
-
+app.use('/stripe', stripeRoute);
 mongoose.connect(process.env.MONGODB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,

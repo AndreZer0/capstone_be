@@ -12,10 +12,6 @@ const CardSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    newCardId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'NewCardsModel',
-    },
   },
   { timestamps: true, strict: true }
 );

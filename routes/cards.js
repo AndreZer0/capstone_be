@@ -5,47 +5,6 @@ const cards = express.Router();
 const CardsModel = require('../models/CardModel');
 const NewCardsModel = require('../models/NewCardModel');
 
-// GET i comic relativi a una card tramite ID
-cards.get('/cards/:cardsId/comics', async (req, res) => {
-  const { cardsId } = req.params;
-
-  try {
-    const card = await CardsModel.findById(cardsId);
-
-    if (!card) {
-      return res.status(404).send({
-        statusCode: 404,
-        message: 'Card non trovata',
-      });
-    }
-
-    // Se la card è stata trovata, estrai l'ID della NewCard associata
-    const newCardId = card.newCardId;
-
-    // Ora puoi trovare tutti i comic relativi a quella NewCard
-    const comics = await NewCardsModel.find({ newCardId });
-
-    if (!comics || comics.length === 0) {
-      return res.status(404).send({
-        statusCode: 404,
-        message: 'Nessun comic trovato per questa card',
-      });
-    }
-
-    res.status(200).send({
-      statusCode: 200,
-      message: 'Ecco i comic relativi alla card!',
-      comics,
-    });
-  } catch (error) {
-    res.status(500).send({
-      statusCode: 500,
-      message: 'Impossibile recuperare i comic della card',
-      error: error.message,
-    });
-  }
-});
-
 //GET alle cards con impaginazione
 cards.get('/cardsPage', async (req, res) => {
   const { page = 1, pageSize = 6 } = req.query;
@@ -116,13 +75,11 @@ cards.get('/cards', async (req, res) => {
   }
 });
 
-// GET i post relativi all'ID della card
-
-cards.get('/cards/:cardsId/posts', async (req, res) => {
+cards.get('/cards/:cardsId', async (req, res) => {
   const { cardsId } = req.params;
 
   try {
-    const card = await CardsModel.findById(cardsId);
+    const card = await CardsModel.findById(cardsId).populate('comments');
 
     if (!card) {
       return res.status(404).send({
@@ -131,35 +88,20 @@ cards.get('/cards/:cardsId/posts', async (req, res) => {
       });
     }
 
-    // Se la card è stata trovata, estrai l'ID della card associata
-    const newCardId = card.newCardId;
-
-    // Ora puoi trovare la NewCard associata usando l'ID
-    const newCard = await NewCardsModel.findById(newCardId);
-
-    if (!newCard) {
-      return res.status(404).send({
-        statusCode: 404,
-        message: 'NewCard non trovata',
-      });
-    }
-
-    // Estrai i post relativi alla NewCard
-    const posts = newCard.posts; // Assumi che ci sia un campo "posts" nell'oggetto NewCard
-
     res.status(200).send({
       statusCode: 200,
-      message: 'Ecco i post relativi alla card!',
-      posts,
+      message: 'Ecco la card con i suoi commenti!',
+      card,
     });
   } catch (error) {
     res.status(500).send({
       statusCode: 500,
-      message: 'Impossibile recuperare i post della card',
+      message: 'Impossibile recuperare la card con i commenti',
       error: error.message,
     });
   }
 });
+
 //GET di un post tramite titolo(filtro per trovare solo il post con quella parola nel titolo)
 cards.get('/cards/title', async (req, res) => {
   const { title } = req.query;
@@ -195,6 +137,7 @@ cards.post('/cards/create', async (req, res) => {
   const newCard = await CardsModel({
     title: req.body.title,
     cover: req.body.cover,
+    comments: req.body.comments,
   });
 
   try {

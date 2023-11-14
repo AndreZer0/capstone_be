@@ -11,7 +11,7 @@ const NewCardSchema = new mongoose.Schema(
       type: String,
     },
     price: {
-      type: String,
+      type: Number,
     },
     author: {
       type: String,
@@ -22,6 +22,10 @@ const NewCardSchema = new mongoose.Schema(
     images: {
       type: Array,
       default: [],
+    },
+    newCardId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'cardsModel',
     },
   },
   { timestamps: true, strict: true }

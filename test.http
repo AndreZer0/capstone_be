@@ -19,31 +19,40 @@ POST http://localhost:6161/cards/create HTTP/1.1
 Content-Type: application/json
 
 {
-  "title": "Nova",
-  "cover": "https://i.postimg.cc/KYbhv8dk/spiderman.png",
- "newCardId":"654be1fd2f54327c7b7cc647"
+  "title": "Wolverine",
+  "cover":"https://pngimg.com/uploads/wolverine/wolverine_PNG37.png"
 }
 
 ####NEW CARD 
-POST http://localhost:6161/comic/create HTTP/1.1
+POST http://localhost:6161/cards/654d2d15a386ccd932bd0a81/comic/create HTTP/1.1
 Content-Type: application/json
 
 {
-  "title": "Superior Spider-man #1",
-  "cover": "https://images3.imgbox.com/28/04/jpGZo3YW_o.jpg",
-  "price":"79,99€",
-  "author":"Peter David, Rick Leonardi",
-  "year":"Novembre 1992",
+  "title": "Wolverine vol 4 #1",
+  "cover":"https://i.postimg.cc/ZK6CBtrT/photo-2023-11-09-20-29-28.jpg",
+  "price":19.99,
+  "author":"Jason Aaron, Renato Guedes, Jose Wilson Magalhães",
+  "year":"Novembre 2010",
   "images":[
-    "https://images3.imgbox.com/6a/f3/V3pFXipa_o.jpg",
-    "https://images3.imgbox.com/b5/d4/R1nUH54e_o.jpg",
-    "https://images3.imgbox.com/ce/fb/tHITYeA8_o.jpg",
-    "https://images3.imgbox.com/17/11/ce1ECjoE_o.jpg"   
-  ]
+"https://i.postimg.cc/C5kLqknv/photo-2023-11-09-20-29-29.jpg",
+"https://i.postimg.cc/xCW18t8J/photo-2023-11-09-20-29-30.jpg",
+"https://i.postimg.cc/jj350srh/photo-2023-11-09-20-29-31.jpg",
+"https://i.postimg.cc/g02JTx1J/photo-2023-11-09-20-29-32.jpg"
+  ],
+  "newCardId":"654d2d15a386ccd932bd0a81"
  }
-
 ####
-GET http://localhost:6161/cards/654be21f2f54327c7b7cc649/comics
+PATCH http://localhost:6161/comic/654d17dda386ccd932bd088c/modify HTTP/1.1
+Content-Type: application/json
+
+{
+
+  "title":"Superior Spider-Man #1"
+}
+####
+GET http://localhost:6161/comic/654d04fc2511150e52a1b52c
+####
+GET http://localhost:6161/cards/654d1351297dd56addeda53f/comics  HTTP/1.1
 ####
 PATCH http://localhost:6161/cards/modify/6540f4186706d44ec39d0a22 HTTP/1.1
 Content-Type: application/json
@@ -80,22 +89,22 @@ Content-Type: application/json
 
 ####COMMENTS
 
-POST  http://localhost:6161/cards/654be21f2f54327c7b7cc649/comment/create HTTP/1.1
+POST  http://localhost:6161/cards/654d0b9e809adbcb762ada5d/comment/create HTTP/1.1
 Content-Type: application/json
 
 { 
   "username": "Mario",
-  "content": "Rossi",
-   "code":"654be21f2f54327c7b7cc649"
+  "content": "Commento prova code",
+   "code":"654d0b9e809adbcb762ada5d"
 
 }
 
 ####
-GET  http://localhost:6161/comments/653ff6fb6706d44ec39d0920 HTTP/1.1
+GET  http://localhost:6161/cards/654d0b9e809adbcb762ada5d/comments HTTP/1.1
 
 ####
 
-GET  http://localhost:6161/comments/getById/654a5a64a0de9ee981eb295e HTTP/1.1
+GET  http://localhost:6161/comments/getById/654cfcd3a4b53f58d07fda41 HTTP/1.1
 
 ####
 
