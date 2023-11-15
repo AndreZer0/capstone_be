@@ -24,30 +24,30 @@ Content-Type: application/json
 }
 
 ####NEW CARD 
-POST http://localhost:6161/cards/6553ff71235b366349ec70eb/comic/create HTTP/1.1
+POST http://localhost:6161/cards/65541e8e9e5ab27fe22d459b/comic/create HTTP/1.1
 Content-Type: application/json
 
 {
-  "title": "Doctor Strange 1: Sorcerer Supreme of the Galaxy",
-  "cover":"https://i.postimg.cc/bvcqh5PC/photo-2023-11-15-00-44-57.jpg",
-  "price":12.99,
-  "author":"Jesus Saiz, Mark Waid",
-  "year":"Novembre 2020",
+  "title": "Galactus the Devourer #1",
+  "cover":"https://i.postimg.cc/mgW8FfhH/photo-2023-11-15-23-00-17.jpg",
+  "price":29.99,
+  "author":"Louise Simonson, John J. Muth, Bill Sienkiewicz",
+  "year":"Dicembre 1999",
   "images":[
-"https://i.postimg.cc/B6N32QKk/photo-2023-11-15-00-44-58.jpg",
-"https://i.postimg.cc/yNmsYTYV/photo-2023-11-15-00-44-59.jpg",
-"https://i.postimg.cc/vBGM16c5/photo-2023-11-15-00-45-00.jpg",
-"https://i.postimg.cc/L5XpDKkX/photo-2023-11-15-00-45-01.jpg"
+"https://i.postimg.cc/zGwpCtRP/photo-2023-11-15-23-00-18.jpg",
+"https://i.postimg.cc/d0q6422Q/photo-2023-11-15-23-00-19.jpg",
+"https://i.postimg.cc/VNDRTJgq/photo-2023-11-15-23-00-20.jpg",
+"https://i.postimg.cc/26ywfC9P/photo-2023-11-15-23-00-21.jpg"
   ],
-  "newCardId":"6553ff71235b366349ec70eb"
+  "newCardId":"65541e8e9e5ab27fe22d459b"
  }
 ####
-PATCH http://localhost:6161/comic/6553fd17235b366349ec7096/modify HTTP/1.1
+PATCH http://localhost:6161/comic/65552c234dc41574cb4a2b33/modify HTTP/1.1
 Content-Type: application/json
 
 {
 
-  "author":"Mike Carey, Scott Kolins"
+  "year":"Giugno 2018"
 }
 ####
 GET http://localhost:6161/comic/654d04fc2511150e52a1b52c
