@@ -3,7 +3,7 @@ GET http://localhost:6161/cards HTTP/1.1
 ####
 
 
-GET http://localhost:6161/cards/653f9bd354c41827bafde31d
+GET http://localhost:6161/cards/65540a55235b366349ec715f
 
 ####
 
@@ -19,47 +19,47 @@ POST http://localhost:6161/cards/create HTTP/1.1
 Content-Type: application/json
 
 {
-  "title": "Wolverine",
-  "cover":"https://pngimg.com/uploads/wolverine/wolverine_PNG37.png"
+  "title": "Gambit",
+  "cover":"https://i.postimg.cc/rFLy0JpR/gambit.png"
 }
 
 ####NEW CARD 
-POST http://localhost:6161/cards/654d2d15a386ccd932bd0a81/comic/create HTTP/1.1
+POST http://localhost:6161/cards/6553ff71235b366349ec70eb/comic/create HTTP/1.1
 Content-Type: application/json
 
 {
-  "title": "Wolverine vol 4 #1",
-  "cover":"https://i.postimg.cc/ZK6CBtrT/photo-2023-11-09-20-29-28.jpg",
-  "price":19.99,
-  "author":"Jason Aaron, Renato Guedes, Jose Wilson Magalhães",
-  "year":"Novembre 2010",
+  "title": "Doctor Strange 1: Sorcerer Supreme of the Galaxy",
+  "cover":"https://i.postimg.cc/bvcqh5PC/photo-2023-11-15-00-44-57.jpg",
+  "price":12.99,
+  "author":"Jesus Saiz, Mark Waid",
+  "year":"Novembre 2020",
   "images":[
-"https://i.postimg.cc/C5kLqknv/photo-2023-11-09-20-29-29.jpg",
-"https://i.postimg.cc/xCW18t8J/photo-2023-11-09-20-29-30.jpg",
-"https://i.postimg.cc/jj350srh/photo-2023-11-09-20-29-31.jpg",
-"https://i.postimg.cc/g02JTx1J/photo-2023-11-09-20-29-32.jpg"
+"https://i.postimg.cc/B6N32QKk/photo-2023-11-15-00-44-58.jpg",
+"https://i.postimg.cc/yNmsYTYV/photo-2023-11-15-00-44-59.jpg",
+"https://i.postimg.cc/vBGM16c5/photo-2023-11-15-00-45-00.jpg",
+"https://i.postimg.cc/L5XpDKkX/photo-2023-11-15-00-45-01.jpg"
   ],
-  "newCardId":"654d2d15a386ccd932bd0a81"
+  "newCardId":"6553ff71235b366349ec70eb"
  }
 ####
-PATCH http://localhost:6161/comic/654d17dda386ccd932bd088c/modify HTTP/1.1
+PATCH http://localhost:6161/comic/6553fd17235b366349ec7096/modify HTTP/1.1
 Content-Type: application/json
 
 {
 
-  "title":"Superior Spider-Man #1"
+  "author":"Mike Carey, Scott Kolins"
 }
 ####
 GET http://localhost:6161/comic/654d04fc2511150e52a1b52c
 ####
 GET http://localhost:6161/cards/654d1351297dd56addeda53f/comics  HTTP/1.1
 ####
-PATCH http://localhost:6161/cards/modify/6540f4186706d44ec39d0a22 HTTP/1.1
+PATCH http://localhost:6161/cards/modify/65541e8e9e5ab27fe22d459b HTTP/1.1
 Content-Type: application/json
 
 {
-   
-    "cover":"https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5b8d2b12-21e8-4931-8a6d-fb9ecdd60383/df191wv-2cbebba8-5515-4c84-93c4-c69b8f24f313.png/v1/fill/w_1280,h_1798/moon_knight_png_by_metropolis_hero1125_df191wv-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTc5OCIsInBhdGgiOiJcL2ZcLzViOGQyYjEyLTIxZTgtNDkzMS04YTZkLWZiOWVjZGQ2MDM4M1wvZGYxOTF3di0yY2JlYmJhOC01NTE1LTRjODQtOTNjNC1jNjliOGYyNGYzMTMucG5nIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.RgCboO8XJ_zRIljvnGhe5F6v1u7mPY96pjOMShRsAlQ"
+     "title": "Galactus",
+    "cover":"https://i.postimg.cc/Qtq6tFT9/galactus.png"
 }
 
 

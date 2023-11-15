@@ -7,19 +7,12 @@ const NewCardsModel = require('../models/NewCardModel');
 
 //GET alle cards con impaginazione
 cards.get('/cardsPage', async (req, res) => {
-  const { page = 1, pageSize = 6 } = req.query;
   try {
-    const card = await CardsModel.find()
-      .limit(pageSize)
-      .skip((page - 1) * pageSize);
-
-    const totalCards = await CardsModel.count();
+    const card = await CardsModel.find();
 
     res.status(200).send({
       statusCode: 200,
-      currentPage: Number(page),
-      totalPages: Math.ceil(totalCards / pageSize),
-      totalCards,
+
       card,
     });
   } catch (error) {
