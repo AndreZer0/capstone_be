@@ -108,7 +108,7 @@ newCards.get('/cards/:cardsId/comics', async (req, res) => {
     res.status(200).send({
       statusCode: 200,
       message: 'Ecco la tua card!',
-      // comic: [comics],
+
       comics,
     });
   } catch (error) {
