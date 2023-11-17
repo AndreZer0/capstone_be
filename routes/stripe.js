@@ -6,8 +6,6 @@ require('dotenv').config();
 const stripe = Stripe(process.env.STRIPE_KEY);
 const router = express.Router();
 
-const YOUR_DOMAIN = 'http://localhost:3000';
-
 router.post('/create-checkout-session', async (req, res) => {
   try {
     const products = req.body.products;
@@ -34,8 +32,8 @@ router.post('/create-checkout-session', async (req, res) => {
       payment_method_types: ['card'],
       line_items,
       mode: 'payment',
-      success_url: `${YOUR_DOMAIN}/checkout-success`,
-      cancel_url: `${YOUR_DOMAIN}/cart`,
+      success_url: `${process.env.YOUR_DOMAIN}/checkout-success`,
+      cancel_url: `${process.env.YOUR_DOMAIN}/cart`,
     });
 
     res.status(200).json({ url: session.url });
